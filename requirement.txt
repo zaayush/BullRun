@@ -1,0 +1,6 @@
+streamlit
+requests
+matplotlib
+python-dotenv
+newsapi-python
+eventregistry
