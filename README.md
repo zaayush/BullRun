@@ -1,41 +1,49 @@
-# Stock Talk
+# StockTalk
 
+## Team Members
+- Aayush Kumar 
+- Abhishek Singh 
+- Ghea Suyono
 
-Name of your project: StockTalks
+## Project Overview
+“Do you want to make money? StockTalk is the right way to go.”
 
+StockTalk is designed to streamline the investment process for individual investors by analyzing vast arrays of financial news and predicting stock price movements. It empowers users to make informed decisions with less stress and confusion.
 
-Team Member: Aayush Kumar, Abhishek Singh, Ghea Suyono
+## Technologies Used
+- **Database Collection:**
+  - News: Aylien News API
+  - Stock Price: Polygon Stock API
+- **Machine Learning Model:**
+  - Sentiment Analysis: Utilized BERT (Bidirectional Encoder Representations from Transformers) through Hugging Face's transformers library.
+  - Predictive Analysis: Applied BERT model to forecast stock price movements based on sentiment extracted from news articles.
+- **Front-end:** Streamlit
+- **Data Visualization:** Matplotlib and Altair for comparative analysis of actual vs. predicted stock price changes.
 
+## How to Run
+Open your terminal and execute the following commands:
 
-A single sentence to impress me about your project
-“Feeling lost in all the financial news? StockTalks provides focused insights for informed investment choices.”
+```bash
+# Set up a virtual environment
+python -m venv venv
+source venv/bin/activate  # For Windows use venv\Scripts\activate
 
+# Install dependencies
+pip install -r requirements.txt
 
-Technologies used
-Data collection:
-News: Aylien News API
-Stock Price: Apha Vantage Stock API
-Machine Learning:
-Time series analysis:
-Prediction model:
-Front-end: 
-Data Visualization:
+# Run the Streamlit application
+streamlit run app.py
 
+# Reflections
+## What we learned:
+- Understanding the intricate relationship between news and stock market performance.
+- Mastering the art of news data analysis to craft predictive models.
+- Grasping the significance of effective data visualization in simplifying investment decisions.
 
-What problems you are trying to solve
-StockTalk helps individual investors who often feel swamped by too much financial news and find it tough to figure out what it means for their investments. It makes their life easier by picking out the important news and explaining how it can affect the stock market. This way, investors don't have to spend hours researching and can make smarter decisions about where to put their money with less stress and confusion
-	
-How to run
+## Challenges faced:
+- Accessing comprehensive and affordable news databases.
+- Choosing a reliable stock price API for in-depth analysis.
+- Overcoming technical hurdles in data integration and system performance.
+- Balancing model complexity with intuitive user interface design.
 
-
-Reflections
-What you learned
-The complex relationship between news and stock performance: Even seemingly unrelated news can have significant ripple effects on investor sentiment and stock prices.
-How to effectively analyze arrays of news databases to create the predictive model: We were overwhelmed by the news information; filtering the relevant parameters took a lot of time. After becoming familiar with the potential model structure, we were finally able to finalize the input parameters.
-The importance of Data Visualization: Given our purpose of simplifying the investment experience for individual investors, the way we present data analysis is critical. We have been benchmarking other websites to produce effective data visualization. 
-
-What questions/problems did you face:
-Finding a free news API to get the database.
-Finding a Stock Price API that is suitable for creating and training the predictive model.
-Technical complexity 
-
+StockTalk is not just a tool but a gateway to demystifying the stock market through intelligent analysis and predictive insights, empowering investors to navigate the financial world with confidence.
