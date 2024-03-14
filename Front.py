@@ -108,7 +108,7 @@ def predict_stock_price(model, data_loader):
  
 # Main app interface
 st.title("Stock News and Data Analysis")
-tickers = ['AAPL', 'AMZN', 'TSLA', 'MSFT', 'AMD', 'BA', 'GOOGL', 'NVDA']
+tickers = ['AAPL', 'AMZN', 'TSLA', 'MSFT', 'AMD', 'GOOGL', 'NVDA']
  
 tab1, tab2 = st.tabs(["News and Stock Data", "Predictive Stock Price"])
  
