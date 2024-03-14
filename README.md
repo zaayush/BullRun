@@ -33,6 +33,7 @@ pip install -r requirements.txt
 
 # Run the Streamlit application
 streamlit run app.py
+```bash
 
 # Reflections
 ## What we learned:
