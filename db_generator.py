@@ -106,7 +106,7 @@ def save_data_to_csv(ticker, all_stories, stock_data):
                     previous_stock_price = stock_data.get(previous_date).get('close', 'N/A')
                     stock_price = previous_stock_price
                     open_stock_price = previous_stock_price
-                #print("Current stock price not available. Previous day's price:", previous_stock_price)
+                
                 if stock_price == 'N/A':
                     # If current stock price is not available, try to get the previous day's price
                     previous_date = (datetime.strptime(stock_date, '%Y-%m-%d') - timedelta(days=2)).strftime('%Y-%m-%d')
@@ -117,7 +117,7 @@ def save_data_to_csv(ticker, all_stories, stock_data):
                         previous_stock_price = stock_data.get(previous_date).get('close', 'N/A')
                         stock_price = previous_stock_price
                         open_stock_price = previous_stock_price
-                    #print("Current stock price not available. Previous day's price:", previous_stock_price)
+                    
                     if stock_price == 'N/A':
                         # If current stock price is not available, try to get the previous day's price
                         previous_date = (datetime.strptime(stock_date, '%Y-%m-%d') - timedelta(days=3)).strftime('%Y-%m-%d')
@@ -128,7 +128,7 @@ def save_data_to_csv(ticker, all_stories, stock_data):
                             stock_price = previous_stock_price
                             open_stock_price = previous_stock_price
                         
-                        #print("Current stock price not available. Previous day's price:", previous_stock_price)
+                        
                     else:
                         None
                 else:
