@@ -34,6 +34,8 @@ pip install -r requirements.txt
 # Run the Streamlit application
 streamlit run app.py
 ```
+Or check out the demo video https://youtu.be/uSOzkcL-hZE
+and website link http://510-stocktalk.azurewebsites.net 
 
 # Reflections
 ## What we learned:
