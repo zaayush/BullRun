@@ -36,7 +36,8 @@ streamlit run app.py
 ```
 Or check out the demo video https://youtu.be/uSOzkcL-hZE
 and website link http://510-stocktalk.azurewebsites.net 
-
+  
+Additionally, you can find all our trained models at https://huggingface.co/aayush9
 # Reflections
 ## What we learned:
 - Understanding the intricate relationship between news and stock market performance.
