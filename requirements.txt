@@ -9,5 +9,6 @@ transformers
 pandas
 scikit-learn
 pandas
-sklearn
 altair
+torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+git+https://github.com/huggingface/transformers
