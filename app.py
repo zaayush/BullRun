@@ -97,7 +97,7 @@ def get_stock_data(api_key, symbol, start_date, end_date):
     else:
         return []
 
-def predict_stock_price(model, data_loader):
+def predict_stock_price(model, new_dataloader):
     model.eval()
     predictions = []
     with torch.no_grad():
@@ -107,8 +107,6 @@ def predict_stock_price(model, data_loader):
             logits = outputs.logits
             predictions.extend(logits.flatten().cpu().detach().numpy())
     return predictions
-
-
 
 
 # Function to load HF model and tokenizer
@@ -228,21 +226,22 @@ with tab2:
 
     # Predictions
     predictions = predict_stock_price(model, new_dataloader)
-
     # Convert predictions to percentage change
-    predicted_percentage_change = predictions  # Modify this line as needed based on how your model is trained to predict percentage change
+    # Average out every two adjacent values in the list
+    averaged_predictions = [(predictions[i] + predictions[i+1]) / 2 for i in range(0, len(predictions)-1, 2)]
+    averaged_predictions.append(predictions[-1])
+
+    # Store the averaged predictions in the same list
+    predicted_percentage_change = averaged_predictions
 
     # Get actual percentage change from the CSV file
-    actual_percentage_change = new_data['percentage_change'].values
+    actual_percentage_change = new_data['percentage_change'].values[::2]
+
 
     # Predictions for tomorrow
     tomorrow_date = datetime.now() + timedelta(days=1)
-    tomorrow_prediction = pipeline('text-classification', model=model_name, tokenizer=tokenizer, token=api_token)(f"Publication Date: {tomorrow_date}, Sentiment Polarity: 0, Sentiment Confidence: 0, Keywords: None, Stock Date: None")
-    print(tomorrow_prediction)
-    if tomorrow_prediction:
-        tomorrow_prediction_value = tomorrow_prediction[0]['score']
-    else:
-        tomorrow_prediction_value = None
+    tomorrow_prediction = predictions[-1]  
+    print(tomorrow_date)
     import subprocess
 
     # Function to run cdb2.py script
@@ -262,20 +261,20 @@ with tab2:
     fig, ax = plt.subplots(figsize=(12, 8))
 
     # Plot actual vs predicted percentage change
-    ax.plot(new_data['stock_date'], actual_percentage_change, label='Actual Percentage Change', marker='o', linestyle='-')
+    ax.plot(new_data['stock_date'][::2][:-1], actual_percentage_change[:-1], label='Actual Percentage Change', marker='o', linestyle='-')
 
     # Plot predicted percentage change if available
     if predicted_percentage_change:
-        ax.plot(new_data['stock_date'], predicted_percentage_change, label='Predicted Percentage Change', marker='x', linestyle='--')
+        ax.plot(new_data['stock_date'][::2], predicted_percentage_change, label='Predicted Percentage Change', marker='x', linestyle='--')
 
     # Plot tomorrow's prediction
-    ax.plot(tomorrow_date, tomorrow_prediction_value, label='Tomorrow Prediction', marker='*', linestyle='--')
+    ax.plot(tomorrow_date, tomorrow_prediction, label='Tomorrow Prediction', marker='*', linestyle='--')
 
     # Draw a dotted green line from the last predicted percentage change to tomorrow's prediction if predictions are available
     if predicted_percentage_change:
         last_predicted_date = new_data['stock_date'].iloc[-1]
         last_predicted_change = predicted_percentage_change[-1]
-        ax.plot([last_predicted_date, tomorrow_date], [last_predicted_change, tomorrow_prediction_value], 'g--')
+        ax.plot([last_predicted_date, tomorrow_date], [last_predicted_change, tomorrow_prediction], 'g--')
 
 
     # Formatting
