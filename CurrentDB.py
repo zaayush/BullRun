@@ -9,8 +9,8 @@ import time
 load_dotenv()
 
 # Define your Aylien credentials
-AppID = os.getenv('AYLIEN_APP_ID')
-APIKey = os.getenv('AYLIEN_API_KEY')
+AppID = os.getenv('APP_ID')
+APIKey = os.getenv('API_KEY')
 PolygonAPIKey = os.getenv('POLYGON_API_KEY')
 
 # Function to get authentication header
@@ -90,6 +90,7 @@ def save_data_to_csv(ticker, all_stories, stock_data):
             print(sentiment_polarity)
             publication_date = datetime.strptime(story.get('published_at', 'N/A'), '%Y-%m-%dT%H:%M:%SZ').strftime('%Y-%m-%d')
             stock_date = (datetime.strptime(publication_date, '%Y-%m-%d') + timedelta(days=1)).strftime('%Y-%m-%d')
+
             
             if stock_data.get(stock_date) == None:
                 stock_price = 'N/A'
@@ -152,12 +153,13 @@ def main():
     # Define the date range (last 3 days)
     end_date = datetime.now()  # Current date
     #end_date = datetime.strptime(end_date, '%Y-%m-%d')
-    start_date = datetime.now() - timedelta(days=7)  # Three days ago
+    start_date = datetime.now() - timedelta(days=7)  # 7 days ago
 
     # Fetch all stock data for each ticker in the date range
     for ticker in tickers:
         stock_data = get_stock_data(PolygonAPIKey, ticker, start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d"))
         print(stock_data)
+        print(end_date)
         if stock_data:
             all_stories = []
             current_date = start_date
