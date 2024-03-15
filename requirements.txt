@@ -1,8 +1,11 @@
 streamlit
-pandas
 requests
+matplotlib
 python-dotenv
+newsapi-python
+eventregistry
 torch
 transformers
-matplotlib
+scikit-learn
+pandas
 altair
