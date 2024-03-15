@@ -35,8 +35,10 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 Or check out the demo video https://youtu.be/uSOzkcL-hZE
-and website link http://510-stocktalk.azurewebsites.net 
-  
+and website link:  
+Azure: http://510-stocktalk.azurewebsites.net 
+Huggingface: https://huggingface.co/spaces/aayush9/Stock-Talk  
+
 Additionally, you can find all our trained models at https://huggingface.co/aayush9
 # Reflections
 ## What we learned:
